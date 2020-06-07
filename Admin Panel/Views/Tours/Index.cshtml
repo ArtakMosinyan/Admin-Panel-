@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Admin_Panel.Models.Tour>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Tours</h4>
+<hr />
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categories)
+            </th>
+            <th><a asp-action="CreateOrEdit" class="btn btn-outline-success"><i class="far fa-plus-square"></i> CREATE TOUR</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categories)
+            </td>
+            <td>
+                <a asp-action="CreateOrEdit" asp-route-id="@item.TourId"><i class="fa fa-marker fa-lg"></i></a> |                
+                <a asp-action="Delete" asp-route-id="@item.TourId" class="text-danger" ml-1 onclick="return confirm('Are you sure to delete this record?')"><i class="fa fa-trash-alt fa-lg"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
